@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:taskez/values/values.dart';
 
-class AddSubIcon extends StatelessWidget {
-  final VoidCallback? callback;
+class AppAddIcon extends StatelessWidget {
+  final StatelessWidget? page;
   final Color? color;
   final double? scale;
 
-  const AddSubIcon({
+  const AppAddIcon({
     Key? key,
-    this.callback,
+    this.page,
     this.scale,
     this.color,
   }) : super(key: key);
@@ -17,7 +17,9 @@ class AddSubIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: callback,
+      onTap: () {
+        if (page != null) Get.to(() => page!);
+      },
       child: Container(
           width: 50 * (scale == null ? 1.0 : scale!),
           height: 50 * (scale == null ? 1.0 : scale!),
