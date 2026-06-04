@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Screens/Chat/new_group.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Chat/add_chat_icon.dart';
 import 'package:taskez/widgets/Chat/badged_title.dart';
@@ -8,7 +8,7 @@ import 'package:taskez/widgets/Chat/selection_tab.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Forms/search_box.dart';
 import 'package:taskez/widgets/Navigation/app_header.dart';
-import 'new_message_screen.dart';
+
 
 class ChatScreen extends StatelessWidget {
   ChatScreen({Key? key}) : super(key: key);
@@ -29,12 +29,12 @@ class ChatScreen extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             TaskezAppHeader(
               title: "Chat",
-              widget: AppAddIcon(page: NewMessageScreen()),
+              widget: AppAddIcon(routeName: AppRoutes.newMessage),
             ),
             AppSpaces.verticalSpace20,
             SearchBox(placeholder: 'Search', controller: _searchController),
             AppSpaces.verticalSpace20,
-            SelectionTab(title: "GROUP", page: NewGroupScreen()),
+            SelectionTab(title: "GROUP", routeName: AppRoutes.newGroup),
             AppSpaces.verticalSpace20,
             BadgedTitle(
               title: "Marketing",
@@ -58,7 +58,7 @@ class ChatScreen extends StatelessWidget {
                 scale: 0.8,
                 child: buildStackedImages(numberOfMembers: "2")),
             AppSpaces.verticalSpace20,
-            SelectionTab(title: "DIRECT MESSAGES", page: NewMessageScreen()),
+            SelectionTab(title: "DIRECT MESSAGES", routeName: AppRoutes.newMessage),
             AppSpaces.verticalSpace20,
             Expanded(
                 child: MediaQuery.removePadding(

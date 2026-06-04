@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Screens/Chat/chat_screen.dart';
-import 'package:taskez/Screens/Profile/profile_overview.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/BottomSheets/dashboard_settings_sheet.dart';
 import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
@@ -35,10 +34,10 @@ class Dashboard extends StatelessWidget {
                 icon: FontAwesomeIcons.comment,
                 image: "assets/man-head.png",
                 notificationCount: "2",
-                page: ChatScreen(),
+                routeName: AppRoutes.chatScreen,
                 title: "Dashboard",
                 onImageTapped: () {
-                  Get.to(() => ProfileOverview());
+                  Get.toNamed(AppRoutes.profileOverview);
                 },
               ),
               AppSpaces.verticalSpace20,

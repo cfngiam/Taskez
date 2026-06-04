@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Auth/new_workspace.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Forms/form_input_with%20_label.dart';
@@ -60,7 +60,7 @@ class _LoginState extends State<Login> {
               height: 60,
               child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => NewWorkSpace());
+                    Get.toNamed(AppRoutes.newWorkspace);
                   },
                   style: ButtonStyles.blueRounded,
                   child: Text('Sign In', style: GoogleFonts.lato(fontSize: 20, color: Colors.white))),

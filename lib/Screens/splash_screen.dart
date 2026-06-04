@@ -5,7 +5,7 @@ import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/AppLogo/app_logo.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 
-import 'Onboarding/onboarding_start.dart';
+import 'package:taskez/routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => OnboardingStart());
+      Get.offAllNamed(AppRoutes.onboardingStart);
     });
   }
 

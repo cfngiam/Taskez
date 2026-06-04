@@ -6,8 +6,8 @@ import 'package:taskez/widgets/Shapes/dashed_circle.dart';
 
 class SelectionTab extends StatelessWidget {
   final String title;
-  final StatelessWidget? page;
-  const SelectionTab({Key? key, required this.title, this.page}) : super(key: key);
+  final String? routeName;
+  const SelectionTab({Key? key, required this.title, this.routeName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SelectionTab extends StatelessWidget {
               )),
           InkWell(
             onTap: () {
-              Get.to(() => page!);
+              if (routeName != null) Get.toNamed(routeName!);
             },
             child: CircularBorder(
                 color: HexColor.fromHex("616575"),

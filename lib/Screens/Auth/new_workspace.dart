@@ -9,7 +9,7 @@ import 'package:taskez/widgets/Onboarding/gradient_color_ball.dart';
 import 'package:taskez/widgets/container_label.dart';
 import 'package:taskez/widgets/dummy/profile_dummy.dart';
 
-import 'choose_plan.dart';
+import 'package:taskez/routes/app_routes.dart';
 
 class NewWorkSpace extends StatelessWidget {
   @override
@@ -132,7 +132,7 @@ class NewWorkSpace extends StatelessWidget {
                       width: 120,
                       label: "Next",
                       callback: () {
-                        Get.to(() => ChoosePlan());
+                        Get.toNamed(AppRoutes.choosePlan);
                       },
                     )
                   ]),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Projects/project_detail.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Projects/project_badge.dart';
 
@@ -25,11 +25,11 @@ class ProjectCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProjectDetails(
-              category: category,
-              projectName: projectName,
-              color: color,
-            ));
+        Get.toNamed(AppRoutes.projectDetails, arguments: {
+              'category': category,
+              'projectName': projectName,
+              'color': color,
+            });
       },
       child: Container(
           // width: 150,
