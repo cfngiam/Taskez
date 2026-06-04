@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
+import 'package:taskez/values/values.dart';
 
 class ContainerLabel extends StatelessWidget {
   final String label;

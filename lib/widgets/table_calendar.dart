@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:taskez/Data/my_task.dart';
-import 'Shapes/roundedborder_with_icon.dart';
+import 'package:taskez/data/my_task.dart';
+import 'shapes/roundedborder_with_icon.dart';
 
 const kBlueCircleForCalendar = BoxDecoration(
   color: const Color(0xFF246CFD),
