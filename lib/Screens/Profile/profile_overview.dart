@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Profile/my_profile.dart';
-import 'package:taskez/Screens/Profile/my_team.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
 import 'package:taskez/widgets/Buttons/progress_card_close_button.dart';
@@ -12,7 +11,7 @@ import 'package:taskez/widgets/Profile/text_outlined_button.dart';
 import 'package:taskez/widgets/container_label.dart';
 import 'package:taskez/widgets/dummy/profile_dummy.dart';
 
-import 'profile_notification_settings.dart';
+
 
 class ProfileOverview extends StatelessWidget {
   const ProfileOverview({Key? key}) : super(key: key);
@@ -55,7 +54,7 @@ class ProfileOverview extends StatelessWidget {
                 width: 150,
                 content: "View Profile",
                 onPressed: () {
-                  Get.to(() => ProfilePage());
+                  Get.toNamed(AppRoutes.myProfile);
                 },
               ),
             ),
@@ -111,7 +110,7 @@ class ProfileOverview extends StatelessWidget {
             BadgedContainer(
               label: "Do not disturb",
               callback: () {
-                Get.to(() => ProfileNotificationSettings());
+                Get.toNamed(AppRoutes.profileNotifications);
               },
               value: "Off",
               badgeColor: "FDA5FF",
@@ -127,7 +126,7 @@ class ProfileOverview extends StatelessWidget {
                   value: "8",
                   badgeColor: "FDA5FF",
                   callback: () {
-                    Get.to(() => MyTeams());
+                    Get.toNamed(AppRoutes.myTeams);
                   },
                 ),
               ),

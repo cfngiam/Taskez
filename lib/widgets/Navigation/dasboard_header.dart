@@ -8,7 +8,7 @@ class DashboardNav extends StatelessWidget {
   final String title;
   final String image;
   final IconData icon;
-  final StatelessWidget? page;
+  final String? routeName;
   final VoidCallback? onImageTapped;
   final String notificationCount;
 
@@ -18,7 +18,7 @@ class DashboardNav extends StatelessWidget {
       required this.icon,
       required this.image,
       required this.notificationCount,
-      this.page,
+      this.routeName,
       this.onImageTapped})
       : super(key: key);
 
@@ -29,7 +29,7 @@ class DashboardNav extends StatelessWidget {
       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         InkWell(
           onTap: () {
-            if (page != null) Get.to(() => page!);
+            if (routeName != null) Get.toNamed(routeName!);
           },
           child: Stack(children: <Widget>[
             Icon(icon, color: Colors.white, size: 30),

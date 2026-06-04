@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:taskez/Screens/Dashboard/timeline.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
@@ -125,7 +125,7 @@ class ChoosePlan extends StatelessWidget {
                       width: 120,
                       label: "Done",
                       callback: () {
-                        Get.to(() => Timeline());
+                        Get.offAllNamed(AppRoutes.timeline);
                       })
                 ]),
           ))

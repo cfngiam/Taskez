@@ -9,7 +9,7 @@ import 'package:taskez/widgets/Projects/project_card_vertical.dart';
 import 'package:taskez/widgets/add_sub_icon.dart';
 import 'package:taskez/widgets/container_label.dart';
 
-import 'team_details.dart';
+import 'package:taskez/routes/app_routes.dart';
 
 class MyTeams extends StatelessWidget {
   const MyTeams({Key? key}) : super(key: key);
@@ -134,7 +134,7 @@ class TeamStory extends StatelessWidget {
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
-            Get.to(() => TeamDetails(title: teamTitle));
+            Get.toNamed(AppRoutes.teamDetails, arguments: {'title': teamTitle});
           },
           child: Transform.scale(
               alignment: Alignment.centerLeft,

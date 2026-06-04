@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Screens/Projects/create_project.dart';
-import 'package:taskez/Screens/Projects/set_members.dart';
-import 'package:taskez/Screens/Task/task_due_date.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
 import 'package:taskez/widgets/Onboarding/labelled_option.dart';
@@ -28,19 +26,19 @@ class DashboardAddBottomSheet extends StatelessWidget {
           label: 'Create Project',
           icon: Icons.device_hub,
           callback: () {
-            Get.to(() => CreateProjectScreen());
+            Get.toNamed(AppRoutes.createProject);
           }),
       LabelledOption(
           label: 'Create team',
           icon: Icons.people,
           callback: () {
-            Get.to(() => SelectMembersScreen());
+            Get.toNamed(AppRoutes.setMembers);
           }),
       LabelledOption(
           label: 'Create Event',
           icon: Icons.fiber_smart_record,
           callback: () {
-            Get.to(() => TaskDueDate());
+            Get.toNamed(AppRoutes.taskDueDate);
           }),
     ]);
   }

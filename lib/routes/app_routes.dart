@@ -1,0 +1,29 @@
+abstract class AppRoutes {
+  static const splash = '/splash';
+  static const onboardingStart = '/onboarding-start';
+  static const onboardingCarousel = '/onboarding-carousel';
+  static const emailAddress = '/email-address';
+  static const signUp = '/sign-up';
+  static const login = '/login';
+  static const newWorkspace = '/new-workspace';
+  static const choosePlan = '/choose-plan';
+  static const timeline = '/timeline';
+  static const dashboard = '/dashboard';
+  static const profileOverview = '/profile-overview';
+  static const myProfile = '/my-profile';
+  static const editProfile = '/edit-profile';
+  static const profileNotifications = '/profile-notifications';
+  static const myTeams = '/my-teams';
+  static const teamDetails = '/team-details';
+  static const chatScreen = '/chat';
+  static const messagingScreen = '/messaging';
+  static const newMessage = '/new-message';
+  static const newGroup = '/new-group';
+  static const notifications = '/notifications';
+  static const searchScreen = '/search';
+  static const projectDetails = '/project-details';
+  static const createProject = '/create-project';
+  static const setMembers = '/set-members';
+  static const taskDueDate = '/task-due-date';
+  static const setAssignees = '/set-assignees';
+}

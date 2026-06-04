@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Task/task_due_date.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 
 class SheetGoToCalendarWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class SheetGoToCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => TaskDueDate());
+        Get.toNamed(AppRoutes.taskDueDate);
       },
       child: Container(
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:taskez/Values/values.dart';
 
 class AppAddIcon extends StatelessWidget {
-  final StatelessWidget? page;
+  final String? routeName;
   final Color? color;
   final double? scale;
 
   const AppAddIcon({
     Key? key,
-    this.page,
+    this.routeName,
     this.scale,
     this.color,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class AppAddIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (page != null) Get.to(() => page!);
+        if (routeName != null) Get.toNamed(routeName!);
       },
       child: Container(
           width: 50 * (scale == null ? 1.0 : scale!),

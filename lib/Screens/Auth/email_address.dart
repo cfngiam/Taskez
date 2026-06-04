@@ -8,7 +8,7 @@ import 'package:taskez/widgets/Forms/form_input_with%20_label.dart';
 import 'package:taskez/widgets/Navigation/back.dart';
 import 'package:taskez/widgets/Shapes/background_hexagon.dart';
 
-import 'signup.dart';
+import 'package:taskez/routes/app_routes.dart';
 
 class EmailAddressScreen extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
             height: 60,
             child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => SignUp(email: _emailController.text));
+                  Get.toNamed(AppRoutes.signUp, arguments: {'email': _emailController.text});
                 },
                 style: ButtonStyles.blueRounded,
                 child: Row(

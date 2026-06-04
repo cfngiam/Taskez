@@ -3,7 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Screens/Task/set_assignees.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
 import 'package:taskez/widgets/Dashboard/sheet_goto_calendar.dart';
@@ -60,7 +60,7 @@ class CreateTaskBottomSheet extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               InkWell(
                 onTap: () {
-                  Get.to(() => SetAssigneesScreen());
+                  Get.toNamed(AppRoutes.setAssignees);
                 },
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   ProfileDummy(

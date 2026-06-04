@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Projects/set_members.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
 import 'package:taskez/widgets/BottomSheets/bottom_sheet_selectable_container.dart';
@@ -71,7 +71,7 @@ class DashboardMeetingDetails extends StatelessWidget {
               buttonWidth: 180,
               buttonText: "Create New Team",
               callback: () {
-                Get.to(() => SelectMembersScreen());
+                Get.toNamed(AppRoutes.setMembers);
               }),
           AppSpaces.verticalSpace20,
         ]),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Profile/edit_profile.dart';
+import 'package:taskez/routes/app_routes.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Navigation/default_back.dart';
@@ -59,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: 75,
                       content: "Edit",
                       onPressed: () {
-                        Get.to(() => EditProfilePage());
+                        Get.toNamed(AppRoutes.editProfile);
                       }),
                 ),
                 AppSpaces.verticalSpace20,
