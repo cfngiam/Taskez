@@ -13,15 +13,15 @@ class SetAssigneesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _searchController = new TextEditingController();
-    final dynamic data = AppData.employeeData;
+    final data = AppData.employees;
     List<Widget> cards = List.generate(
-        AppData.employeeData.length,
+        data.length,
         (index) => EmployeeCard(
-              activated: data[index]['activated'],
-              employeeImage: data[index]['employeeImage'],
-              employeeName: data[index]['employeeName'],
-              backgroundColor: data[index]["color"],
-              employeePosition: data[index]["employeePosition"],
+              activated: data[index].activated,
+              employeeImage: data[index].image,
+              employeeName: data[index].name,
+              backgroundColor: data[index].color,
+              employeePosition: data[index].position,
             ));
     return Scaffold(
         body: Stack(children: [
@@ -29,48 +29,60 @@ class SetAssigneesScreen extends StatelessWidget {
         color: HexColor.fromHex("#181a1f"),
         position: "topLeft",
       ),
-      SafeArea(
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 20),
-            child: TaskezAppHeader(
-              title: "Set Assignees",
-              widget: AppPrimaryButton(
-                buttonHeight: 40,
-                buttonWidth: 70,
-                buttonText: "Next",
+      Padding(
+          padding: const EdgeInsets.only(top: 60.0),
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: TaskezAppHeader(
+                title: "Set Assignees",
+                widget: AppPrimaryButton(
+                  buttonHeight: 40,
+                  buttonWidth: 70,
+                  buttonText: "Next",
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 40),
-          Expanded(
-              flex: 1,
-              child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecorationStyles.fadingGlory,
-                  child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: DecoratedBox(
-                          decoration: BoxDecorationStyles.fadingInnerDecor,
-                          child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SearchBox(
+            AppSpaces.verticalSpace40,
+            Expanded(
+                flex: 1,
+                child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecorationStyles.fadingGlory,
+                    child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: DecoratedBox(
+                            decoration: BoxDecorationStyles.fadingInnerDecor,
+                            child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SearchBox(
                                         placeholder: 'Search',
-                                        controller: _searchController),
-                                    AppSpaces.verticalSpace20,
-                                    Expanded(
-                                        child: MediaQuery.removePadding(
-                                      context: context,
-                                      removeTop: true,
-                                      child: ListView(children: [...cards]),
-                                    ))
-                                  ]))))))
-        ]),
-      )
+                                        controller: _searchController,
+                                      ),
+                                      AppSpaces.verticalSpace20,
+                                      Expanded(
+                                          child: MediaQuery.removePadding(
+                                        context: context,
+                                        removeTop: true,
+                                        child: ListView(children: [...cards]),
+                                      ))
+                                    ])))))),
+            //AppSpaces.verticalSpace20,
+            AppPrimaryButton(
+                buttonHeight: 50,
+                buttonWidth: 150,
+                buttonText: "Add Member",
+                callback: () {
+                  int count = 0;
+                  Navigator.of(context).popUntil((_) => count++ >= 2);
+                }),
+            AppSpaces.verticalSpace20,
+          ]))
     ]));
   }
 }

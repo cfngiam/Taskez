@@ -95,6 +95,7 @@ class TeamProjectOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final projects = AppData.projects;
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         //change
@@ -106,11 +107,11 @@ class TeamProjectOverview extends StatelessWidget {
         crossAxisSpacing: 10,
       ),
       itemBuilder: (_, index) => ProjectCardVertical(
-        projectName: AppData.productData[index]['projectName'],
-        category: AppData.productData[index]['category'],
-        color: AppData.productData[index]['color'],
-        ratingsUpperNumber: AppData.productData[index]['ratingsUpperNumber'],
-        ratingsLowerNumber: AppData.productData[index]['ratingsLowerNumber'],
+        projectName: projects[index].projectName,
+        category: projects[index].category,
+        color: projects[index].color,
+        ratingsUpperNumber: projects[index].ratingsUpperNumber,
+        ratingsLowerNumber: projects[index].ratingsLowerNumber,
       ),
       itemCount: 4,
     );

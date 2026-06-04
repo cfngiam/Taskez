@@ -28,7 +28,7 @@ List<Color> progressCardGradientList = [
 final onlineUsers = List.generate(
     AppData.onlineUsers.length,
     (index) => OnlineUser(
-          image: AppData.onlineUsers[index]['profileImage'],
-          imageBackground: AppData.onlineUsers[index]['color'],
-          userName: AppData.onlineUsers[index]['name'],
+          image: AppData.onlineUsers[index].profileImage,
+          imageBackground: AppData.onlineUsers[index].color,
+          userName: AppData.onlineUsers[index].name,
         ));

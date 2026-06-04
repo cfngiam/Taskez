@@ -15,6 +15,7 @@ class ProjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final _settingsButtonTrigger = ValueNotifier(0);
     final _switchGridLayout = ValueNotifier(false);
+    final projects = AppData.projects;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.only(right: 20, left: 20),
@@ -88,26 +89,20 @@ class ProjectScreen extends StatelessWidget {
                   ),
                   itemBuilder: (_, index) => _switchGridLayout.value
                       ? ProjectCardVertical(
-                          projectName: AppData.productData[index]
-                              ['projectName'],
-                          category: AppData.productData[index]['category'],
-                          color: AppData.productData[index]['color'],
-                          ratingsUpperNumber: AppData.productData[index]
-                              ['ratingsUpperNumber'],
-                          ratingsLowerNumber: AppData.productData[index]
-                              ['ratingsLowerNumber'],
+                          projectName: projects[index].projectName,
+                          category: projects[index].category,
+                          color: projects[index].color,
+                          ratingsUpperNumber: projects[index].ratingsUpperNumber,
+                          ratingsLowerNumber: projects[index].ratingsLowerNumber,
                         )
                       : ProjectCardHorizontal(
-                          projectName: AppData.productData[index]
-                              ['projectName'],
-                          category: AppData.productData[index]['category'],
-                          color: AppData.productData[index]['color'],
-                          ratingsUpperNumber: AppData.productData[index]
-                              ['ratingsUpperNumber'],
-                          ratingsLowerNumber: AppData.productData[index]
-                              ['ratingsLowerNumber'],
+                          projectName: projects[index].projectName,
+                          category: projects[index].category,
+                          color: projects[index].color,
+                          ratingsUpperNumber: projects[index].ratingsUpperNumber,
+                          ratingsLowerNumber: projects[index].ratingsLowerNumber,
                         ),
-                  itemCount: AppData.productData.length,
+                  itemCount: projects.length,
                 );
               },
             ),

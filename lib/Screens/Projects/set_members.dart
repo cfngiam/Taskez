@@ -13,15 +13,15 @@ class SelectMembersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _searchController = new TextEditingController();
-    final dynamic data = AppData.employeeData;
+    final data = AppData.employees;
     List<Widget> cards = List.generate(
-        AppData.employeeData.length,
+        data.length,
         (index) => EmployeeCard(
-              activated: data[index]['activated'],
-              employeeImage: data[index]['employeeImage'],
-              employeeName: data[index]['employeeName'],
-              backgroundColor: data[index]["color"],
-              employeePosition: data[index]["employeePosition"],
+              activated: data[index].activated,
+              employeeImage: data[index].image,
+              employeeName: data[index].name,
+              backgroundColor: data[index].color,
+              employeePosition: data[index].position,
             ));
     return Scaffold(
         body: Stack(children: [
