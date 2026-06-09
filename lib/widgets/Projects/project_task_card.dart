@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Projects/project_task_active_card.dart';
 import 'package:taskez/widgets/Projects/project_task_inactive_card.dart';
@@ -20,33 +21,30 @@ class ProjectTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool newBool = this.activated;
-    ValueNotifier<bool> _totalDueTrigger = ValueNotifier(newBool);
-    return ValueListenableBuilder(
-        valueListenable: _totalDueTrigger,
-        builder: (BuildContext context, _, __) {
-          return _totalDueTrigger.value
-              ? Column(
-                  children: [
-                    ProjectTaskInActiveCard(
-                        header: header,
-                        backgroundColor: backgroundColor,
-                        notifier: _totalDueTrigger,
-                        date: date,
-                        image: image),
-                    AppSpaces.verticalSpace10
-                  ],
-                )
-              : Column(children: [
-                  ProjectTaskActiveCard(
+    final RxBool isActive = activated.obs;
+    return Obx(() {
+      return isActive.value
+          ? Column(
+              children: [
+                ProjectTaskInActiveCard(
                     header: header,
                     backgroundColor: backgroundColor,
-                    notifier: _totalDueTrigger,
+                    notifier: isActive,
                     date: date,
-                    image: image,
-                  ),
-                  AppSpaces.verticalSpace10
-                ]);
-        });
+                    image: image),
+                AppSpaces.verticalSpace10
+              ],
+            )
+          : Column(children: [
+              ProjectTaskActiveCard(
+                header: header,
+                backgroundColor: backgroundColor,
+                notifier: isActive,
+                date: date,
+                image: image,
+              ),
+              AppSpaces.verticalSpace10
+            ]);
+    });
   }
 }

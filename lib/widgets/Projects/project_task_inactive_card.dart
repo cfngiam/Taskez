@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/dummy/green_done_icon.dart';
@@ -7,7 +8,7 @@ import 'package:taskez/widgets/dummy/profile_dummy.dart';
 class ProjectTaskInActiveCard extends StatelessWidget {
   final String header;
   final String backgroundColor;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
   final String image;
   final String date;
   const ProjectTaskInActiveCard(

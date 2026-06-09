@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:get/get.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
 import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Screens/Dashboard/dashboard.dart';
 import 'package:taskez/Values/values.dart';
+import 'package:taskez/controllers/navigation_controller.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Dashboard/bottomNavigationItem.dart';
 import 'package:taskez/widgets/Dashboard/dashboard_add_icon.dart';
 import 'package:taskez/widgets/Dashboard/dashboard_add_sheet.dart';
 
-class Timeline extends StatefulWidget {
+class Timeline extends StatelessWidget {
   Timeline({Key? key}) : super(key: key);
 
-  @override
-  _TimelineState createState() => _TimelineState();
-}
-
-class _TimelineState extends State<Timeline> {
-  ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
-
-  StatelessWidget currentScreen = Dashboard();
-
+  final NavigationController controller = Get.put(NavigationController());
   final PageStorageBucket bucket = PageStorageBucket();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +26,11 @@ class _TimelineState extends State<Timeline> {
             color: HexColor.fromHex("#181a1f"),
             position: "topLeft",
           ),
-          ValueListenableBuilder(
-              valueListenable: bottomNavigatorTrigger,
-              builder: (BuildContext context, _, __) {
-                return PageStorage(
-                    child: dashBoardScreens[bottomNavigatorTrigger.value],
-                    bucket: bucket);
-              })
+          Obx(() {
+            return PageStorage(
+                child: dashBoardScreens[controller.selectedIndex.value],
+                bucket: bucket);
+          })
         ]),
         bottomNavigationBar: Container(
             width: double.infinity,
@@ -56,12 +48,12 @@ class _TimelineState extends State<Timeline> {
                 children: [
                   BottomNavigationItem(
                       itemIndex: 0,
-                      notifier: bottomNavigatorTrigger,
+                      notifier: controller.selectedIndex,
                       icon: Icons.widgets),
                   Spacer(),
                   BottomNavigationItem(
                       itemIndex: 1,
-                      notifier: bottomNavigatorTrigger,
+                      notifier: controller.selectedIndex,
                       icon: FeatherIcons.clipboard),
                   Spacer(),
                   DashboardAddButton(
@@ -74,12 +66,12 @@ class _TimelineState extends State<Timeline> {
                   Spacer(),
                   BottomNavigationItem(
                       itemIndex: 2,
-                      notifier: bottomNavigatorTrigger,
+                      notifier: controller.selectedIndex,
                       icon: FeatherIcons.bell),
                   Spacer(),
                   BottomNavigationItem(
                       itemIndex: 3,
-                      notifier: bottomNavigatorTrigger,
+                      notifier: controller.selectedIndex,
                       icon: FeatherIcons.search)
                 ])));
   }

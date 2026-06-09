@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:taskez/Screens/Dashboard/timeline.dart';
 import 'package:taskez/Values/values.dart';
+import 'package:taskez/controllers/onboarding_controller.dart';
 import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Navigation/default_back.dart';
@@ -13,11 +14,10 @@ import 'package:taskez/widgets/Onboarding/toggle_option.dart';
 class ChoosePlan extends StatelessWidget {
   ChoosePlan({super.key});
 
+  final OnboardingController controller = Get.put(OnboardingController());
+
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<bool> _multiUserTrigger = ValueNotifier(false);
-    ValueNotifier<bool> _customLabelTrigger = ValueNotifier(false);
-    ValueNotifier<int> _planContainerTrigger = ValueNotifier(0);
     return Scaffold(
         body: Stack(children: [
       DarkRadialBackground(
@@ -59,14 +59,14 @@ class ChoosePlan extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     PlanCard(
-                                      notifierValue: _planContainerTrigger,
+                                      notifierValue: controller.selectedPlan,
                                       selectedIndex: 0,
                                       header: "It's Free",
                                       subHeader: "For team\nfrom 1 - 5",
                                     ),
                                     AppSpaces.horizontalSpace20,
                                     PlanCard(
-                                        notifierValue: _planContainerTrigger,
+                                        notifierValue: controller.selectedPlan,
                                         selectedIndex: 1,
                                         header: "Premium",
                                         subHeader: "\$19/mo")
@@ -98,11 +98,11 @@ class ChoosePlan extends StatelessWidget {
                               AppSpaces.verticalSpace20,
                               ToggleLabelOption(
                                   label: '    Multiple Assignees',
-                                  notifierValue: _multiUserTrigger,
+                                  notifierValue: controller.multiUserEnabled,
                                   icon: Icons.groups),
                               ToggleLabelOption(
                                   label: '    Custom Labels',
-                                  notifierValue: _customLabelTrigger,
+                                  notifierValue: controller.customLabelEnabled,
                                   icon: Icons.category)
                             ],
                           ))),

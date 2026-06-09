@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
+import 'package:taskez/controllers/workspace_controller.dart';
 import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Navigation/default_back.dart';
@@ -12,9 +13,12 @@ import 'package:taskez/widgets/dummy/profile_dummy.dart';
 import 'choose_plan.dart';
 
 class NewWorkSpace extends StatelessWidget {
+  NewWorkSpace({Key? key}) : super(key: key);
+
+  final WorkspaceController controller = Get.put(WorkspaceController());
+
   @override
   Widget build(BuildContext context) {
-    final _colorTrigger = ValueNotifier(5);
     return Scaffold(
       body: Stack(children: [
         DarkRadialBackground(
@@ -101,7 +105,7 @@ class NewWorkSpace extends StatelessWidget {
                                         ...List.generate(
                                           AppColors.ballColors.length,
                                           (index) => GradientColorBall(
-                                            valueChanger: _colorTrigger,
+                                            valueChanger: controller.selectedColor,
                                             selectIndex: index,
                                             gradientList: [
                                               ...AppColors.ballColors[index]

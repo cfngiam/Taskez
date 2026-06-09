@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
 import 'package:taskez/Values/values.dart';
+import 'package:taskez/controllers/project_detail_controller.dart';
 import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
 import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
 import 'package:taskez/widgets/Projects/layout_list_tile.dart';
@@ -9,15 +11,13 @@ import 'package:taskez/widgets/Projects/project_detail_appbar.dart';
 import 'package:taskez/widgets/Projects/project_task_card.dart';
 import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
 
-// ignore: must_be_immutable
 class ProjectDetails extends StatelessWidget {
   final String color;
   final String projectName;
   final String category;
   ProjectDetails({Key? key, required this.color, required this.projectName, required this.category}) : super(key: key);
 
-  ValueNotifier<int> _settingsButtonTrigger = ValueNotifier(0);
-  ValueNotifier<int> _layoutButtonTrigger = ValueNotifier(0);
+  final ProjectDetailController controller = Get.put(ProjectDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +42,12 @@ class ProjectDetails extends StatelessWidget {
                 ),
                 AppSpaces.verticalSpace20,
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  //tab indicators
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      PrimaryTabButton(buttonText: "All Tasks", itemIndex: 0, notifier: _settingsButtonTrigger),
-                      PrimaryTabButton(buttonText: "Recent", itemIndex: 1, notifier: _settingsButtonTrigger),
-                      PrimaryTabButton(buttonText: "Starred", itemIndex: 2, notifier: _settingsButtonTrigger)
+                      PrimaryTabButton(buttonText: "All Tasks", itemIndex: 0, notifier: controller.selectedTab),
+                      PrimaryTabButton(buttonText: "Recent", itemIndex: 1, notifier: controller.selectedTab),
+                      PrimaryTabButton(buttonText: "Starred", itemIndex: 2, notifier: controller.selectedTab)
                     ],
                   ),
 
@@ -152,20 +151,19 @@ class ProjectDetails extends StatelessWidget {
           ),
           children: [
             LayoutListTile(
-              notifier: _layoutButtonTrigger,
+              notifier: controller.selectedLayout,
               index: 0,
               icon: Icons.checklist,
               title: 'List',
             ),
             Divider(height: 1, color: HexColor.fromHex("353742")),
             LayoutListTile(
-              notifier: _layoutButtonTrigger,
+              notifier: controller.selectedLayout,
               index: 1,
               icon: Icons.dashboard,
               title: 'Board',
             ),
           ],
-          /* ... */
         );
       },
     );

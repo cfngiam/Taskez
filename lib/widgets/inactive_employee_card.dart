@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/dummy/profile_dummy.dart';
@@ -6,7 +7,7 @@ import 'package:taskez/widgets/dummy/profile_dummy.dart';
 class InactiveEmployeeCard extends StatelessWidget {
   final String employeeName;
   final String employeeImage;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
   final String employeePosition;
   final Color color;
 
@@ -31,7 +32,6 @@ class InactiveEmployeeCard extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
             color: AppColors.primaryBackgroundColor,
-            // border: Border.all(color: AppColors.primaryBackgroundColor, width: 4),
             borderRadius: BorderRadius.circular(16)),
         child: Row(children: [
           ProfileDummy(

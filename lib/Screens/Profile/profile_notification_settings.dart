@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Constants/constants.dart';
 import 'package:taskez/Values/values.dart';
@@ -13,10 +14,10 @@ class ProfileNotificationSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _assignmedToMe = ValueNotifier(true);
-    final _taskCompleted = ValueNotifier(false);
-    final _mentionedMe = ValueNotifier(true);
-    final _directMessage = ValueNotifier(false);
+    final RxBool assignedToMe = true.obs;
+    final RxBool taskCompleted = false.obs;
+    final RxBool mentionedMe = true.obs;
+    final RxBool directMessage = false.obs;
     return Scaffold(
         body: Stack(children: [
       DarkRadialBackground(
@@ -72,14 +73,14 @@ class ProfileNotificationSettings extends StatelessWidget {
             AppSpaces.verticalSpace40,
             LabelledCheckbox(
               label: "Task assigned to me",
-              notifierValue: _assignmedToMe,
+              notifierValue: assignedToMe,
             ),
             LabelledCheckbox(
-                label: "Task completed", notifierValue: _taskCompleted),
+                label: "Task completed", notifierValue: taskCompleted),
             LabelledCheckbox(
-                label: "Mentioned Me", notifierValue: _mentionedMe),
+                label: "Mentioned Me", notifierValue: mentionedMe),
             LabelledCheckbox(
-                label: "Direct Message", notifierValue: _directMessage),
+                label: "Direct Message", notifierValue: directMessage),
           ]))))
     ]));
   }
@@ -87,7 +88,7 @@ class ProfileNotificationSettings extends StatelessWidget {
 
 class LabelledCheckbox extends StatelessWidget {
   final String label;
-  final ValueNotifier<bool>? notifierValue;
+  final RxBool? notifierValue;
 
   const LabelledCheckbox({
     required this.label,
@@ -103,14 +104,12 @@ class LabelledCheckbox extends StatelessWidget {
         data: Theme.of(context).copyWith(
           unselectedWidgetColor: Colors.grey,
         ),
-        child: ValueListenableBuilder(
-            valueListenable: notifierValue!,
-            builder: (BuildContext context, _, __) {
-              return Checkbox(
-                  value: notifierValue!.value,
-                  activeColor: AppColors.primaryAccentColor,
-                  onChanged: (bool? value) => notifierValue!.value = value!);
-            }),
+        child: Obx(() {
+          return Checkbox(
+              value: notifierValue!.value,
+              activeColor: AppColors.primaryAccentColor,
+              onChanged: (bool? value) => notifierValue!.value = value!);
+        }),
       ),
     ]);
   }

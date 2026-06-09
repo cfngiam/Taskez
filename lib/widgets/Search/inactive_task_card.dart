@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/dummy/green_done_icon.dart';
@@ -6,7 +7,7 @@ import 'package:taskez/widgets/dummy/green_done_icon.dart';
 class InactiveTaskCard extends StatelessWidget {
   final String header;
   final String subHeader;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
   final String date;
   const InactiveTaskCard(
       {Key? key, required this.notifier, required this.header, required this.subHeader, required this.date})

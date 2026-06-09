@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 
 class LayoutListTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final ValueNotifier<int> notifier;
+  final RxInt notifier;
   final int index;
 
   const LayoutListTile({
@@ -31,25 +32,20 @@ class LayoutListTile extends StatelessWidget {
               Text(title,
                   style: GoogleFonts.lato(color: Colors.white, fontSize: 20))
             ]),
-            ValueListenableBuilder(
-              valueListenable: notifier,
-              builder: (BuildContext context, _, __) {
-                return Theme(
-                  data: ThemeData(
-                    //here change to your color
-                    unselectedWidgetColor: Colors.white,
-                  ),
-                  child: Radio(
-                    // overlayColor:  unselectedWi,
-                    value: notifier.value,
-                    groupValue: index,
-                    onChanged: ((value) {
-                      notifier.value = index;
-                    }),
-                  ),
-                );
-              },
-            ),
+            Obx(() {
+              return Theme(
+                data: ThemeData(
+                  unselectedWidgetColor: Colors.white,
+                ),
+                child: Radio(
+                  value: notifier.value,
+                  groupValue: index,
+                  onChanged: ((value) {
+                    notifier.value = index;
+                  }),
+                ),
+              );
+            }),
           ],
         ),
       ),

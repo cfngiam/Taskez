@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taskez/Values/values.dart';
 
 import 'package:taskez/widgets/Search/active_task_card.dart';
@@ -19,29 +20,26 @@ class SearchTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool newBool = this.activated;
-    ValueNotifier<bool> _totalDueTrigger = ValueNotifier(newBool);
+    final RxBool isActive = activated.obs;
 
-    return ValueListenableBuilder(
-        valueListenable: _totalDueTrigger,
-        builder: (BuildContext context, _, __) {
-          return _totalDueTrigger.value
-              ? Column(children: [
-                  InactiveTaskCard(
-                      header: header,
-                      notifier: _totalDueTrigger,
-                      subHeader: subHeader,
-                      date: date),
-                  AppSpaces.verticalSpace10
-                ])
-              : Column(children: [
-                  ActiveTaskCard(
-                      header: header,
-                      notifier: _totalDueTrigger,
-                      subHeader: subHeader,
-                      date: date),
-                  AppSpaces.verticalSpace10
-                ]);
-        });
+    return Obx(() {
+      return isActive.value
+          ? Column(children: [
+              InactiveTaskCard(
+                  header: header,
+                  notifier: isActive,
+                  subHeader: subHeader,
+                  date: date),
+              AppSpaces.verticalSpace10
+            ])
+          : Column(children: [
+              ActiveTaskCard(
+                  header: header,
+                  notifier: isActive,
+                  subHeader: subHeader,
+                  date: date),
+              AppSpaces.verticalSpace10
+            ]);
+    });
   }
 }
