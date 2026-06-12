@@ -14,6 +14,7 @@ import 'package:taskez/widgets/Onboarding/toggle_option.dart';
 class ChoosePlan extends StatelessWidget {
   ChoosePlan({super.key});
 
+  /// Manages plan selection and feature toggles (multi-user, custom labels).
   final OnboardingController controller = Get.put(OnboardingController());
 
   @override

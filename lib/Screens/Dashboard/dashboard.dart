@@ -19,6 +19,7 @@ import 'DashboardTabScreens/productivity.dart';
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
+  /// Manages tab selection (Overview / Productivity) and settings toggles.
   final DashboardController controller = Get.put(DashboardController());
 
   @override

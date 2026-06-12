@@ -17,6 +17,7 @@ class ProjectDetails extends StatelessWidget {
   final String category;
   ProjectDetails({Key? key, required this.color, required this.projectName, required this.category}) : super(key: key);
 
+  /// Manages task tab selection (All Tasks / Recent / Starred) and layout mode.
   final ProjectDetailController controller = Get.put(ProjectDetailController());
 
   @override

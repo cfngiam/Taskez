@@ -13,6 +13,7 @@ import 'package:taskez/widgets/Dashboard/dashboard_add_sheet.dart';
 class Timeline extends StatelessWidget {
   Timeline({Key? key}) : super(key: key);
 
+  /// Manages the bottom navigation bar selection index.
   final NavigationController controller = Get.put(NavigationController());
   final PageStorageBucket bucket = PageStorageBucket();
 

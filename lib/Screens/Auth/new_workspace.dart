@@ -15,6 +15,7 @@ import 'choose_plan.dart';
 class NewWorkSpace extends StatelessWidget {
   NewWorkSpace({Key? key}) : super(key: key);
 
+  /// Manages the selected color theme for the workspace.
   final WorkspaceController controller = Get.put(WorkspaceController());
 
   @override

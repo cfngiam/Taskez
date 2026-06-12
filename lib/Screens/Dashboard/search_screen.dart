@@ -11,6 +11,7 @@ import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
 
+  /// Manages the active tab state (Task / Mention / Files).
   final SearchTabController controller = Get.put(SearchTabController());
 
   @override
