@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'active_employee_card.dart';
 import 'inactive_employee_card.dart';
@@ -20,29 +21,26 @@ class EmployeeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool newBool = this.activated;
-    ValueNotifier<bool> _totalDueTrigger = ValueNotifier(newBool);
+    final RxBool isActive = activated.obs;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: ValueListenableBuilder(
-          valueListenable: _totalDueTrigger,
-          builder: (BuildContext context, _, __) {
-            return Container(
-                child: _totalDueTrigger.value
-                    ? ActiveEmployeeCard(
-                        color: backgroundColor,
-                        notifier: _totalDueTrigger,
-                        employeeImage: employeeImage,
-                        employeeName: employeeName,
-                        employeePosition: employeePosition)
-                    : InactiveEmployeeCard(
-                        color: backgroundColor,
-                        notifier: _totalDueTrigger,
-                        employeeImage: employeeImage,
-                        employeeName: employeeName,
-                        employeePosition: employeePosition));
-          }),
+      child: Obx(() {
+        return Container(
+            child: isActive.value
+                ? ActiveEmployeeCard(
+                    color: backgroundColor,
+                    notifier: isActive,
+                    employeeImage: employeeImage,
+                    employeeName: employeeName,
+                    employeePosition: employeePosition)
+                : InactiveEmployeeCard(
+                    color: backgroundColor,
+                    notifier: isActive,
+                    employeeImage: employeeImage,
+                    employeeName: employeeName,
+                    employeePosition: employeePosition));
+      }),
     );
   }
 }

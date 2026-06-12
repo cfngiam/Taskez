@@ -11,13 +11,10 @@ import 'package:taskez/widgets/Profile/profile_text_option.dart';
 import 'package:taskez/widgets/Profile/text_outlined_button.dart';
 import 'package:taskez/widgets/dummy/profile_dummy.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
+class ProfilePage extends StatelessWidget {
+  ProfilePage({Key? key}) : super(key: key);
 
-class _ProfilePageState extends State<ProfilePage> {
-  final ValueNotifier<bool> totalTaskNotifier = ValueNotifier(true);
+  final RxBool showAsAway = true.obs;
   final String tabSpace = "\t\t";
 
   @override
@@ -74,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           ToggleLabelOption(
                             label: '$tabSpace Show me as away',
-                            notifierValue: totalTaskNotifier,
+                            notifierValue: showAsAway,
                             icon: Icons.directions_run_rounded,
                             margin: 7.0,
                           ),

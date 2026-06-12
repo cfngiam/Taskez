@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:get/get.dart';
 import 'package:taskez/Data/data_model.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
@@ -13,8 +14,8 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _settingsButtonTrigger = ValueNotifier(0);
-    final _switchGridLayout = ValueNotifier(false);
+    final RxInt settingsTab = 0.obs;
+    final RxBool gridLayout = false.obs;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.only(right: 20, left: 20),
@@ -30,40 +31,36 @@ class ProjectScreen extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20, left: 20),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          //tab indicators
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               PrimaryTabButton(
                   buttonText: "Favorites",
                   itemIndex: 0,
-                  notifier: _settingsButtonTrigger),
+                  notifier: settingsTab),
               PrimaryTabButton(
                   buttonText: "Recent",
                   itemIndex: 1,
-                  notifier: _settingsButtonTrigger),
+                  notifier: settingsTab),
               PrimaryTabButton(
                   buttonText: "All",
                   itemIndex: 2,
-                  notifier: _settingsButtonTrigger)
+                  notifier: settingsTab)
             ],
           ),
           Container(
               alignment: Alignment.centerRight,
               child: InkWell(
                   onTap: () {
-                    _switchGridLayout.value = !_switchGridLayout.value;
-                    // _showDashboardSettings(context);
+                    gridLayout.value = !gridLayout.value;
                   },
-                  child: ValueListenableBuilder(
-                      valueListenable: _switchGridLayout,
-                      builder: (BuildContext context, _, __) {
-                        return _switchGridLayout.value
-                            ? Icon(FeatherIcons.clipboard,
-                                color: Colors.white, size: 30)
-                            : Icon(FeatherIcons.grid,
-                                color: Colors.white, size: 30);
-                      })))
+                  child: Obx(() {
+                    return gridLayout.value
+                        ? Icon(FeatherIcons.clipboard,
+                            color: Colors.white, size: 30)
+                        : Icon(FeatherIcons.grid,
+                            color: Colors.white, size: 30);
+                  })))
         ]),
       ),
       AppSpaces.verticalSpace20,
@@ -73,44 +70,38 @@ class ProjectScreen extends StatelessWidget {
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
-            child: ValueListenableBuilder(
-              valueListenable: _switchGridLayout,
-              builder: (BuildContext context, _, __) {
-                return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    //change
-                    crossAxisCount: _switchGridLayout.value ? 2 : 1,
-                    mainAxisSpacing: 10,
-
-                    //change height 125
-                    mainAxisExtent: _switchGridLayout.value ? 220 : 125,
-                    crossAxisSpacing: 10,
-                  ),
-                  itemBuilder: (_, index) => _switchGridLayout.value
-                      ? ProjectCardVertical(
-                          projectName: AppData.productData[index]
-                              ['projectName'],
-                          category: AppData.productData[index]['category'],
-                          color: AppData.productData[index]['color'],
-                          ratingsUpperNumber: AppData.productData[index]
-                              ['ratingsUpperNumber'],
-                          ratingsLowerNumber: AppData.productData[index]
-                              ['ratingsLowerNumber'],
-                        )
-                      : ProjectCardHorizontal(
-                          projectName: AppData.productData[index]
-                              ['projectName'],
-                          category: AppData.productData[index]['category'],
-                          color: AppData.productData[index]['color'],
-                          ratingsUpperNumber: AppData.productData[index]
-                              ['ratingsUpperNumber'],
-                          ratingsLowerNumber: AppData.productData[index]
-                              ['ratingsLowerNumber'],
-                        ),
-                  itemCount: AppData.productData.length,
-                );
-              },
-            ),
+            child: Obx(() {
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: gridLayout.value ? 2 : 1,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: gridLayout.value ? 220 : 125,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (_, index) => gridLayout.value
+                    ? ProjectCardVertical(
+                        projectName: AppData.productData[index]
+                            ['projectName'],
+                        category: AppData.productData[index]['category'],
+                        color: AppData.productData[index]['color'],
+                        ratingsUpperNumber: AppData.productData[index]
+                            ['ratingsUpperNumber'],
+                        ratingsLowerNumber: AppData.productData[index]
+                            ['ratingsLowerNumber'],
+                      )
+                    : ProjectCardHorizontal(
+                        projectName: AppData.productData[index]
+                            ['projectName'],
+                        category: AppData.productData[index]['category'],
+                        color: AppData.productData[index]['color'],
+                        ratingsUpperNumber: AppData.productData[index]
+                            ['ratingsUpperNumber'],
+                        ratingsLowerNumber: AppData.productData[index]
+                            ['ratingsLowerNumber'],
+                      ),
+                itemCount: AppData.productData.length,
+              );
+            }),
           ),
         ),
       )

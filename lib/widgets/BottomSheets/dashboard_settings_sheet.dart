@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/Buttons/primary_buttons.dart';
 import 'package:taskez/widgets/Buttons/text_button.dart';
@@ -7,10 +8,10 @@ import 'package:taskez/widgets/Onboarding/toggle_option.dart';
 import 'bottom_sheet_holder.dart';
 
 class DashboardSettingsBottomSheet extends StatelessWidget {
-  final ValueNotifier<bool> totalTaskNotifier;
-  final ValueNotifier<bool> totalDueNotifier;
-  final ValueNotifier<bool> totalCompletedNotifier;
-  final ValueNotifier<bool> workingOnNotifier;
+  final RxBool totalTaskNotifier;
+  final RxBool totalDueNotifier;
+  final RxBool totalCompletedNotifier;
+  final RxBool workingOnNotifier;
   const DashboardSettingsBottomSheet(
       {Key? key,
       required this.totalTaskNotifier,

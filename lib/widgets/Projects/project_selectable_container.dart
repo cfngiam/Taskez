@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taskez/Values/values.dart';
 
 import 'active_project_selectable_container.dart';
@@ -16,29 +17,26 @@ class ProjectSelectableContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool newBool = this.activated;
-    ValueNotifier<bool> _totalDueTrigger = ValueNotifier(newBool);
+    final RxBool isActive = activated.obs;
 
-    return ValueListenableBuilder(
-        valueListenable: _totalDueTrigger,
-        builder: (BuildContext context, _, __) {
-          return _totalDueTrigger.value
-              ? Column(
-                  children: [
-                    InactiveProjectSelectableContainer(
-                      header: header,
-                      notifier: _totalDueTrigger,
-                    ),
-                    AppSpaces.verticalSpace10
-                  ],
-                )
-              : Column(children: [
-                  ActiveProjectSelectableContainer(
-                    header: header,
-                    notifier: _totalDueTrigger,
-                  ),
-                  AppSpaces.verticalSpace10
-                ]);
-        });
+    return Obx(() {
+      return isActive.value
+          ? Column(
+              children: [
+                InactiveProjectSelectableContainer(
+                  header: header,
+                  notifier: isActive,
+                ),
+                AppSpaces.verticalSpace10
+              ],
+            )
+          : Column(children: [
+              ActiveProjectSelectableContainer(
+                header: header,
+                notifier: isActive,
+              ),
+              AppSpaces.verticalSpace10
+            ]);
+    });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/BottomSheets/bottom_sheets.dart';
 import 'package:taskez/Values/values.dart';
@@ -16,7 +17,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _settingsButtonTrigger = ValueNotifier(0);
+    final RxInt layoutTab = 0.obs;
     final _projectNameController = new TextEditingController();
 
     return SingleChildScrollView(
@@ -72,7 +73,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                           buttonText: "List",
                           icon: Icons.checklist,
                           itemIndex: 0,
-                          notifier: _settingsButtonTrigger),
+                          notifier: layoutTab),
                     ),
                     Expanded(
                       flex: 1,
@@ -80,7 +81,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                           buttonText: "Board",
                           icon: Icons.checklist,
                           itemIndex: 1,
-                          notifier: _settingsButtonTrigger),
+                          notifier: layoutTab),
                     )
                   ])),
               AppSpaces.verticalSpace20,

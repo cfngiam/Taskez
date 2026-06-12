@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 import 'package:taskez/widgets/dummy/profile_dummy.dart';
@@ -7,7 +8,7 @@ import 'package:taskez/widgets/dummy/profile_dummy.dart';
 class ProjectTaskActiveCard extends StatelessWidget {
   final String header;
   final String backgroundColor;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
   final String image;
   final String date;
   const ProjectTaskActiveCard(
@@ -104,7 +105,6 @@ class ProjectTaskActiveCard extends StatelessWidget {
                                   color: HexColor.fromHex("EA9EEE")))
                         ])
                   ]),
-                  // replace with image
                   ProfileDummy(
                       color: HexColor.fromHex(backgroundColor),
                       dummyType: ProfileDummyType.Image,

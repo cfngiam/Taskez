@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
 
 class InactiveProjectSelectableContainer extends StatelessWidget {
   final String header;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
   const InactiveProjectSelectableContainer({
     Key? key,
     required this.header,

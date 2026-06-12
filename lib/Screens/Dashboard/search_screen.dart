@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taskez/Values/values.dart';
+import 'package:taskez/controllers/search_controller.dart';
 import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
 import 'package:taskez/widgets/Forms/search_box.dart';
 import 'package:taskez/widgets/Search/task_card.dart';
@@ -9,10 +11,12 @@ import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
 
+  /// Manages the active tab state (Task / Mention / Files).
+  final SearchTabController controller = Get.put(SearchTabController());
+
   @override
   Widget build(BuildContext context) {
     final _searchController = new TextEditingController();
-    final _settingsButtonTrigger = ValueNotifier(0);
     return Padding(
         padding: EdgeInsets.all(20.0),
         child: SafeArea(
@@ -48,29 +52,26 @@ class SearchScreen extends StatelessWidget {
             ),
             AppSpaces.verticalSpace10,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              //tab indicators
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   PrimaryTabButton(
                       buttonText: "Task",
                       itemIndex: 0,
-                      notifier: _settingsButtonTrigger),
+                      notifier: controller.selectedTab),
                   PrimaryTabButton(
                       buttonText: "Mention",
                       itemIndex: 1,
-                      notifier: _settingsButtonTrigger),
+                      notifier: controller.selectedTab),
                   PrimaryTabButton(
                       buttonText: "Files",
                       itemIndex: 2,
-                      notifier: _settingsButtonTrigger)
+                      notifier: controller.selectedTab)
                 ],
               ),
               Container(
                   alignment: Alignment.centerRight,
-                  child: AppSettingsIcon(
-                      // callback: ((),{_showDashboardSettings(context);}),
-                      ))
+                  child: AppSettingsIcon())
             ]),
             AppSpaces.verticalSpace20,
             Expanded(

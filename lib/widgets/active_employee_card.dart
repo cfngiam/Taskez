@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:taskez/Values/values.dart';
@@ -11,7 +12,7 @@ class ActiveEmployeeCard extends StatelessWidget {
   final String employeeImage;
   final Color color;
   final String employeePosition;
-  final ValueNotifier<bool> notifier;
+  final RxBool notifier;
 
   const ActiveEmployeeCard(
       {Key? key,
