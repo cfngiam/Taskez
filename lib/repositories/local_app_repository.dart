@@ -37,7 +37,7 @@ const List<ProgressTask> _progressTasks = [
     progressBar: 2,
   ),
   ProgressTask(
-    cardTitle: "Registration",
+    cardTitle: "Registration 2",
     rating: "3/4",
     progress: "75.00",
     progressBar: 3,
