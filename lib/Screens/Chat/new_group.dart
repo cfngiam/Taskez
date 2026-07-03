@@ -8,22 +8,20 @@ import 'package:taskez/widgets/Navigation/app_header.dart';
 import 'package:taskez/widgets/employee_card.dart';
 
 class NewGroupScreen extends StatelessWidget {
-  NewGroupScreen({
-    Key? key,
-  }) : super(key: key);
+  NewGroupScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _searchController = new TextEditingController();
-    final dynamic data = AppData.employeeData;
+    final _searchController = new TextEditingController();
+    final data = AppData.employees;
     List<Widget> cards = List.generate(
-        AppData.employeeData.length,
+        data.length,
         (index) => EmployeeCard(
-              activated: data[index]['activated'],
-              employeeImage: data[index]['employeeImage'],
-              employeeName: data[index]['employeeName'],
-              backgroundColor: data[index]["color"],
-              employeePosition: data[index]["employeePosition"],
+              activated: data[index].activated,
+              employeeImage: data[index].image,
+              employeeName: data[index].name,
+              backgroundColor: data[index].color,
+              employeePosition: data[index].position,
             ));
     return Scaffold(
         body: Stack(children: [
@@ -45,7 +43,7 @@ class NewGroupScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            AppSpaces.verticalSpace40,
             Expanded(
                 flex: 1,
                 child: Container(
@@ -73,7 +71,17 @@ class NewGroupScreen extends StatelessWidget {
                                         removeTop: true,
                                         child: ListView(children: [...cards]),
                                       ))
-                                    ]))))))
+                                    ])))))),
+            //AppSpaces.verticalSpace20,
+            AppPrimaryButton(
+                buttonHeight: 50,
+                buttonWidth: 150,
+                buttonText: "Create",
+                callback: () {
+                  int count = 0;
+                  Navigator.of(context).popUntil((_) => count++ >= 2);
+                }),
+            AppSpaces.verticalSpace20,
           ]))
     ]));
   }

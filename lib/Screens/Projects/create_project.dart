@@ -21,20 +21,20 @@ class CreateProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic notificationData = AppData.notificationMentions;
+    final notificationData = AppData.notificationMentions;
 
     List<Widget> notificationCards = List.generate(
         3,
         (index) => NotificationCard(
-              read: notificationData[index]['read'],
-              userName: notificationData[index]['mentionedBy'],
-              date: notificationData[index]['date'],
-              image: notificationData[index]['profileImage'],
-              mentioned: notificationData[index]['hashTagPresent'],
-              message: notificationData[index]['message'],
-              mention: notificationData[index]['mentionedIn'],
-              imageBackground: notificationData[index]['color'],
-              userOnline: notificationData[index]['userOnline'],
+              read: notificationData[index].read,
+              userName: notificationData[index].mentionedBy,
+              date: notificationData[index].date,
+              image: notificationData[index].profileImage,
+              mentioned: notificationData[index].hashTagPresent,
+              message: notificationData[index].message,
+              mention: notificationData[index].mentionedIn,
+              imageBackground: notificationData[index].color,
+              userOnline: notificationData[index].userOnline,
             ));
     final List<String> sentImage = [
       "assets/slider-background-1.png",

@@ -16,6 +16,7 @@ class MyTeams extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final projects = AppData.projects;
     return Scaffold(
         body: Stack(children: [
       DarkRadialBackground(
@@ -49,11 +50,11 @@ class MyTeams extends StatelessWidget {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: (_, index) => ProjectCardVertical(
-                  projectName: AppData.productData[index]['projectName'],
-                  category: AppData.productData[index]['category'],
-                  color: AppData.productData[index]['color'],
-                  ratingsUpperNumber: AppData.productData[index]['ratingsUpperNumber'],
-                  ratingsLowerNumber: AppData.productData[index]['ratingsLowerNumber'],
+                  projectName: projects[index].projectName,
+                  category: projects[index].category,
+                  color: projects[index].color,
+                  ratingsUpperNumber: projects[index].ratingsUpperNumber,
+                  ratingsLowerNumber: projects[index].ratingsLowerNumber,
                 ),
                 itemCount: 2,
               ),
@@ -73,11 +74,11 @@ class MyTeams extends StatelessWidget {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: (_, index) => ProjectCardVertical(
-                  projectName: AppData.productData[index]['projectName'],
-                  category: AppData.productData[index]['category'],
-                  color: AppData.productData[index]['color'],
-                  ratingsUpperNumber: AppData.productData[index]['ratingsUpperNumber'],
-                  ratingsLowerNumber: AppData.productData[index]['ratingsLowerNumber'],
+                  projectName: projects[index].projectName,
+                  category: projects[index].category,
+                  color: projects[index].color,
+                  ratingsUpperNumber: projects[index].ratingsUpperNumber,
+                  ratingsLowerNumber: projects[index].ratingsLowerNumber,
                 ),
                 itemCount: 4,
               ),
@@ -97,11 +98,11 @@ class MyTeams extends StatelessWidget {
                   crossAxisSpacing: 10,
                 ),
                 itemBuilder: (_, index) => ProjectCardVertical(
-                  projectName: AppData.productData[index]['projectName'],
-                  category: AppData.productData[index]['category'],
-                  color: AppData.productData[index]['color'],
-                  ratingsUpperNumber: AppData.productData[index]['ratingsUpperNumber'],
-                  ratingsLowerNumber: AppData.productData[index]['ratingsLowerNumber'],
+                  projectName: projects[index].projectName,
+                  category: projects[index].category,
+                  color: projects[index].color,
+                  ratingsUpperNumber: projects[index].ratingsUpperNumber,
+                  ratingsLowerNumber: projects[index].ratingsLowerNumber,
                 ),
                 itemCount: 1,
               ),
@@ -126,21 +127,30 @@ class TeamStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(teamTitle, style: AppTextStyles.header2.copyWith(fontSize: 35)),
-        AppSpaces.verticalSpace10,
-        ContainerLabel(label: "$numberOfMembers Members"),
-        AppSpaces.verticalSpace10,
-        InkWell(
-          onTap: () {
-            Get.to(() => TeamDetails(title: teamTitle));
-          },
-          child: Transform.scale(
-              alignment: Alignment.centerLeft,
-              scale: 0.7,
-              child: buildStackedImages(numberOfMembers: noImages, addMore: true)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ContainerLabel(
+              label: teamTitle,
+            ),
+            InkWell(
+                onTap: () {
+                  Get.to(() => TeamDetails(title: teamTitle));
+                },
+                child: Text("See All",
+                    style: TextStyle(
+                        color: AppColors.primaryAccentColor, fontSize: 18))),
+          ],
         ),
+        AppSpaces.verticalSpace20,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            buildStackedImages(numberOfMembers: noImages, addMore: true),
+          ],
+        ),
+        AppSpaces.verticalSpace20,
       ],
     );
   }

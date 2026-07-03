@@ -10,15 +10,15 @@ class DashboardOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic data = AppData.progressIndicatorList;
+    final data = AppData.progressTasks;
 
     List<Widget> cards = List.generate(
         5,
         (index) => TaskProgressCard(
-              cardTitle: data[index]['cardTitle'],
-              rating: data[index]['rating'],
-              progressFigure: data[index]['progress'],
-              percentageGap: int.parse(data[index]['progressBar']),
+              cardTitle: data[index].cardTitle,
+              rating: data[index].rating,
+              progressFigure: data[index].progress,
+              percentageGap: data[index].progressBar,
             ));
 
     return Column(
